@@ -49,9 +49,6 @@ function readStream(stream,cb)
 }
 
 describe( 'level-superlevel', function() {
-  it( 'should be a function', function() {
-    Superlevel.should.be.a( 'function' );
-  } );
   it( 'should allow sublevel to isolate the root database', function(done) {
     sample1(function(sub,db) {
       readStream(db.createKeyStream(),function(results){
@@ -70,7 +67,7 @@ describe( 'level-superlevel', function() {
   } );
   it( 'should allow access to all the keys from the super level', function(done) {
     sample1(function(sub,db) {
-      readStream(db.createSuperKeyStream(),function(results){
+      readStream(db.superlevel.createKeyStream(),function(results){
         results.should.equal('base-\xffalphabet\xffa-\xffalphabet\xffb-\xffalphabet\xffc')
         done()
       })
@@ -78,7 +75,7 @@ describe( 'level-superlevel', function() {
   } );
   it( 'should allow access to all the values from the super level', function(done) {
     sample1(function(sub,db) {
-      readStream(db.createSuperValueStream(),function(results){
+      readStream(db.superlevel.createValueStream(),function(results){
         results.should.equal('ball-apple-binary-cookie')
         done()
       })
@@ -87,7 +84,7 @@ describe( 'level-superlevel', function() {
   it( 'should allow access to all the data from the super level', function(done) {
     sample1(function(sub,db) {
       var results= []
-      db.createSuperReadStream()
+      db.superlevel.createReadStream()
       .on('data', function(data) {
         results.push(data.key+':'+data.value)
       })
@@ -100,7 +97,7 @@ describe( 'level-superlevel', function() {
   } );
   it( 'should support get at the super level: getting data out of a sublevel', function(done) {
     sample1(function(sub,db) {
-      db.superGet('\xffalphabet\xffb',function(err,data){
+      db.superlevel.get('\xffalphabet\xffb',function(err,data){
         assert.ifError(err)
         data.should.equal('binary')
         done()
@@ -109,7 +106,7 @@ describe( 'level-superlevel', function() {
   } );
   it( 'should support put at the super level: putting data into a sublevel', function(done) {
     sample1(function(sub,db) {
-      db.superPut('\xffalphabet\xffd','dinosaur',function(err){
+      db.superlevel.put('\xffalphabet\xffd','dinosaur',function(err){
         sub.get('d',function(err,data){
           assert.ifError(err)
           data.should.equal('dinosaur')
@@ -123,7 +120,7 @@ describe( 'level-superlevel', function() {
       sub.get('b',function(err,data){
         assert.ifError(err)
         data.should.equal('binary')
-        db.superDel('\xffalphabet\xffb',function(err){
+        db.superlevel.del('\xffalphabet\xffb',function(err){
           sub.get('b',function(err,data){
             assert(err)
             done()
@@ -134,7 +131,7 @@ describe( 'level-superlevel', function() {
   } );
   it( 'should support batch at the super level', function(done) {
     sample1(function(sub,db) {
-      db.superBatch([
+      db.superlevel.batch([
         {type: 'del', key:'\xffalphabet\xffb'},
         {type: 'put', key:'\xffalphabet\xffd',value:'donut'},
         {type: 'put', key:'\xffalphabet\xffe',value:'elf'},
@@ -157,7 +154,7 @@ describe( 'level-superlevel', function() {
   } );
   it( 'should support a write stream at the super level', function(done) {
     sample1(function(sub,db) {
-      var ws=db.createSuperWriteStream()
+      var ws=db.superlevel.createWriteStream()
       ws.on('error',function(err){
         assert.ifError(err)
         done()
@@ -181,12 +178,8 @@ describe( 'level-superlevel', function() {
   } );
   it( 'should not allow super put if the readonly option is specified', function(done) {
     readonly_sample(function(sub,db) {
-      db.superPut('\xffalphabet\xffd','dinosaur',function(err){
-        sub.get('d',function(err,data){
-          assert(err)
-          done()
-        })
-      })
+      assert(!db.superlevel.put)
+      done()
     })
   } );
 
