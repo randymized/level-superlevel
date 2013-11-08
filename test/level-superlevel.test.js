@@ -5,7 +5,7 @@ var assert= require('assert')
 var levelup = require('levelup')
 var memdown = require('memdown')
 var Sublevel= require('level-sublevel');
-var Superlevel = require( '../lib/level-superlevel.js' );
+var Superlevel = require( '../index.js' );
 
 function populateDB(options,done)
 {

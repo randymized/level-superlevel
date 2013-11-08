@@ -9,6 +9,6 @@
 
 'use strict';
 
-var superlevel = require( './lib/superlevel.js' );
+var superlevel = require( './lib/level-superlevel.js' );
 
 module.exports = superlevel;
