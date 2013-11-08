@@ -1,7 +1,7 @@
 {
   "name": "level-superlevel",
   "description": "Sublevel partitions the database.  Superlevel allows accessing the entire database, including browsing all the sublevels.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/randymized/level-superlevel",
   "author": {
     "name": "Randy McLaughlin",
