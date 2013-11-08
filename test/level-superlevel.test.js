@@ -10,7 +10,7 @@ var Superlevel = require( '../lib/level-superlevel.js' );
 function populateDB(options,done)
 {
   var db= Sublevel(Superlevel(levelup('testdb',{db: memdown}),
-    {readonly: options.readonly}
+    {writable: options.writable}
   ));
   db.put('base','ball',function(err) {
     assert.ifError(err)
@@ -28,11 +28,11 @@ function populateDB(options,done)
 }
 function sample1(done)
 {
-  populateDB({},done)
+  populateDB({writable:true},done)
 }
 function readonly_sample(done)
 {
-  populateDB({readonly:true},done)
+  populateDB({},done)
 }
 
 function readStream(stream,cb)

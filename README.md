@@ -2,6 +2,8 @@
 
 > Sublevel partitions the database.  Superlevel allows accessing the entire database, including browsing the database content even if you don't know the names of all the sublevels.
 
+By default, the super level is read only.  Put, del, batch and createWriteStream are not available. Set the writable option true to make the super level writable.
+
 ## Getting Started
 Install the module with: `npm install node-superlevel`
 
