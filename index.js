@@ -1,7 +1,7 @@
 
 /*
  * superlevel
- * https://github.com/randymized/node-level-superlevel
+ * https://github.com/randymized/level-superlevel
  *
  * Copyright (c) 2013 Randy McLaughlin
  * Licensed under the MIT license.

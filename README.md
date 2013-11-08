@@ -1,4 +1,4 @@
-# superlevel [![Build Status](https://secure.travis-ci.org/randymized/node-level-superlevel.png?branch=master)](http://travis-ci.org/randymized/node-level-superlevel)
+# superlevel [![Build Status](https://secure.travis-ci.org/randymized/level-superlevel.png?branch=master)](http://travis-ci.org/randymized/level-superlevel)
 
 > Sublevel partitions the database.  Superlevel allows accessing the entire database, including browsing the database content even if you don't know the names of all the sublevels.
 
