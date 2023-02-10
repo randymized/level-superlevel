@@ -1,5 +1,13 @@
 # superlevel [![Build Status](https://secure.travis-ci.org/randymized/level-superlevel.png?branch=master)](http://travis-ci.org/randymized/level-superlevel)
 
+[![Not Maintained](https://img.shields.io/badge/Maintenance%20Level-Abandoned-orange.svg)](https://gist.github.com/cheerfulstoic/d107229326a01ff0f333a1d3476e068d)
+
+
+X is **no longer being actively developed** and has been archived. It is probably out of date anyway. 
+You are still welcome to use it but you may want to check for any forks that are more actively maintained.
+If it is of value to you, you are welcome to fork it or start a new project and incorporate its code into your project.
+
+## description
 > Sublevel partitions the database.  Superlevel adds a super level to the root partition that allows accessing the entire database. This allows things like discovering sublevels and browsing the database content without knowledge of the sublevel structure.
 
 ## Getting Started
